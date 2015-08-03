@@ -1,0 +1,12 @@
+# This file contains a mapping from script names to oid codes.
+# This way the existing scripts are always assigned to the the
+# same codes, even if you add further scripts.
+# 
+# You can copy the contents of this file into the main .yaml file,
+# if you want to have both together.
+# 
+# If you delete this file, the next run of "ttool assemble" might
+# use different codes for your scripts, and you might have to re-
+# create the images for your product.
+scriptcodes:
+  fertig: 4716

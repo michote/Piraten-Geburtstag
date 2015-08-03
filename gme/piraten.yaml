@@ -1,0 +1,98 @@
+product-id: 778
+media-path: oggs/%s
+comment: Priratenschatzsuche Geburtstag
+init: $john:=1
+welcome: start
+# Spiellogik
+scripts:
+  ### John ###
+  john:
+  - $john==1? P(john1) $karte:=1
+  - $john==2? P(john2)
+  - $john==4? P(john4)
+  - $john==5? P(john5) P(frage1) $s5:=1
+  - $john==6? P(john6)
+  - $john==7? P(john7)
+  ### Start / Station 1 ###
+  start:
+  - $karte==0? J(john)
+  - $karte==1? P(karte1) $karte:=0
+  ### Station 2 ###
+  karte2:
+  - P(karte2) $john:=2 $karte:=1
+  badehose:
+  - $karte==0? J(karte2)
+  - P(badehose)
+  lolli:
+  - $karte==0? J(karte2)
+  - P(lolli)
+  kopftuch:
+  - $karte==0? J(karte2)
+  - $s2f1==0? $s2f1:=1 P(kopftuch) J(fertig)
+  - $s2f1==1? P(kopftuch) J(fertig)
+  augenklappe:
+  - $karte==0? J(karte2)
+  - $s2f2==0? $s2f2:=1 P(augenklappe) J(fertig)
+  - $s2f2==1? P(augenklappe) J(fertig)
+  fussball:
+  - $karte==0? J(karte2)
+  - P(fussball)
+  handy:
+  - $karte==0? J(karte2)
+  - P(handy)
+  degen:
+  - $karte==0? J(karte2)
+  - $s2f3==0? $s2f3:=1 P(degen) J(fertig)
+  - $s2f3==1? P(degen) J(fertig)
+  buddel:
+  - $karte==0? J(karte2)
+  - $s2f4==0? $s2f4:=1 P(buddel) J(fertig)
+  - $s2f4==1? P(buddel) J(fertig)
+  fertig:
+  - $s2f1==1? $s2f1==1? $s2f1==1? $s2f1==1? P(anweisung2)
+  ### Station 3 ### der Papagei
+  papagei:
+  - P(papagei) P(anweisung3) $john:=4
+  ### Station 4 ###
+  karte4:
+  - P(karte4)
+  ### Station 5 ###
+  stern:
+  - $s5==0? P(karte5) $john:=5
+  - $s5==1? $s5fr==0? $s5fr:=1 P(frage2)
+  - $s5==1? $s5fr==1? P(falsch) P(frage2)
+  - $s5==1? $s5fr==2? $s5fr:=3 P(frage4)
+  - $s5==1? $s5fr==3? $s5fr:=4 P(frage5)
+  - $s5==1? $s5fr==4? P(falsch) P(frage5)
+  - $s5==1? $s5fr==5? $s5fr:=6 P(frage7)
+  - $s5==1? $s5fr==6? P(falsch) P(frage7)
+  viereck:
+  - $s5==0? P(karte5) $john:=5
+  - $s5==1? $s5fr==0? P(falsch) P(frage1)
+  - $s5==1? $s5fr==1? $s5fr:=2 P(frage3)
+  - $s5==1? $s5fr==2? P(falsch) P(frage3)
+  - $s5==1? $s5fr==3? P(falsch) P(frage4)
+  - $s5==1? $s5fr==4? $s5fr:=5 P(frage6)
+  - $s5==1? $s5fr==5? P(falsch) P(frage6)
+  - $s5==1? $s5fr==6? P(anweisung5) $john:=6
+  ### Station 6 ###
+  schatz:
+  - P(anweisung6) $john:=7
+# Codezuweisung
+scriptcodes:
+  start: 7016
+  john: 7001
+  papagei: 7002
+  badehose: 7003
+  lolli: 7004
+  kopftuch: 7005
+  augenklappe: 7006
+  fussball: 7007
+  handy: 7008
+  degen: 7009
+  buddel: 7010
+  karte2: 7011
+  karte4: 7012
+  stern: 7013
+  viereck: 7014
+  schatz: 7015
